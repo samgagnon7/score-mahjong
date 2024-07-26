@@ -1,4 +1,5 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { interpretPhoto } from '../services/photoService';
 import React, { useState, useRef } from "react";
 import {
   Button,
@@ -48,9 +49,7 @@ export default function CameraPage() {
 
   if (photo) {
     let usePhoto = () => {
-      MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-        setPhoto(undefined);
-      });
+        interpretPhoto(photo.base64)
     };
 
     return (
